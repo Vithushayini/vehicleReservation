@@ -5,7 +5,6 @@ const cors = require('cors');
 require('dotenv').config();
 const app = express();
 
-// Middleware
 app.use(helmet());
 app.use(cors({
     origin: process.env.FRONTEND_URL,

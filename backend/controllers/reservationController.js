@@ -2,8 +2,7 @@ const Reservation=require('../models/Reservation');
 
 exports.createReservation = async (req, res) => {
     try {
-        const { date, time, location, vehicle_no, mileage, message} = req.body;
-        const username = req.user.username;
+        const { date, time, location, vehicle_no, mileage, message, username} = req.body;
 
         const newReservation = await Reservation.create({
             date, time, location, vehicle_no, mileage, message, username
@@ -17,13 +16,14 @@ exports.createReservation = async (req, res) => {
 
 
 exports.getReservations = async (req, res) => {
+    const username=req.query.username;
     try {
         const reservations = await Reservation.findAll({
-            where: { username: req.user.username }
+            where: { username: username }
         });
         res.status(200).json(reservations);
     } catch (error) {
-        res.status(500).json({ error: 'Server error' });
+        res.status(500).json({ error: error.message });
     }
 };
 
@@ -31,7 +31,7 @@ exports.getReservations = async (req, res) => {
 exports.deleteReservation = async (req, res) => {
     try {
         const reservation = await Reservation.findOne({
-            where: { booking_id: req.params.id, username: req.user.username }
+            where: { booking_id: req.params.id, username: req.query.username }
         });
 
         if (!reservation) {

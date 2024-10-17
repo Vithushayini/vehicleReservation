@@ -1,6 +1,5 @@
 const express = require('express');
 const { createReservation, getReservations, deleteReservation } = require('../controllers/reservationController');
-// const authenticate = require('../middleware/authMiddleware');
 const router = express.Router();
 
 router.post('/reserve',  createReservation);

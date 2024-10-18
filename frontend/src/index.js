@@ -8,8 +8,8 @@ const authConfig = {
 
   clientID:"NVIfXFkgYD5yR4CQ6sWHYeoVkXka",
   baseUrl:"https://api.asgardeo.io/t/vithushayini",
-  signInRedirectURL:"http://localhost:3000/",
-  signOutRedirectURL:"http://localhost:3000/",
+  signInRedirectURL:"http://localhost:3000",
+  signOutRedirectURL:"http://localhost:3000",
   scope: [ "openid", "profile","email","address","phone"]
 
 };

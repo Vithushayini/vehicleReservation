@@ -8,7 +8,7 @@ const Dashboard = () => {
     const { getAccessToken, state, getIDToken, getBasicUserInfo, getDecodedIDToken } = useAuthContext();
     const [reservations, setReservations] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const reservationsPerPage = 3;
+    const reservationsPerPage = 2;
 
     // Fetch reservations
     const fetchReservations = async () => {

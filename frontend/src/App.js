@@ -31,34 +31,43 @@ const App = () => {
     }, [userProfile]);
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center bg-green-500" style={{
+        <div className="bg-cover bg-center   py-32 absolute top-0 left-0 w-full bg-black " style={{
             // backgroundImage: "url('https://img.freepik.com/free-photo/beautiful-car-commercial-night_23-2148283413.jpg?ga=GA1.1.1830151876.1728808953&semt=ais_hybrid')",
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            minHeight: '100vh'
+            
         }}>
-            <h1 className="text-4xl text-white font-bold mb-6">Vehicle Service Reservation</h1>
+            <h1 className="text-4xl text-center text-white font-bold mb-6">Vehicle Service Reservation</h1>
 
             {!state?.isAuthenticated ? (
-                <>
-                <button
-                    onClick={() => signIn()}
-                    className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition duration-200"
-                >
-                    Login
-                </button> 
-                <button
-                    className="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow hover:bg-blue-700 transition duration-200 mt-5"
-                >
-                    <a href='https://asgardeo.io/signup?visitor_id=671116c2ac9c26.96522686&utm_source=site&utm_medium=organic' >Register</a>
-                </button> 
-                </>
+
+                <div className="flex flex-col items-center space-y-6">
+                    <p className='mt-10 mb-32 text-center text-xl text-gray-400 font-medium mb-6 px-96'>Welcome to our Vehicle Service Reservation System! Book and manage your vehicle services with ease and security. Sign in to schedule your service and track your reservations effortlessly.</p>
+                    {/* Login with Asgardeo */}
+                    <button
+                        onClick={() => signIn()}
+                        className="bg-blue-600 text-white font-semibold py-3 px-6 mt-14 rounded-lg shadow-lg hover:bg-blue-700 transition duration-200 text-lg"
+                    >
+                        Continue with Asgardeo
+                    </button>
+
+                    {/* Register Section */}
+                    <div className="text-center">
+                        <p className="text-gray-600 mt-5 text-lg">Don’t have an account?</p>
+                        <button
+                            className="bg-blue-600 text-white font-semibold py-3 px-6 mt-10 mb-24 rounded-lg shadow-lg hover:bg-blue-700 transition duration-200 mt-2 text-lg"
+                        >
+                            <a href='https://asgardeo.io/signup?visitor_id=671116c2ac9c26.96522686&utm_source=site&utm_medium=organic'>
+                                Sign up with Asgardeo
+                            </a>
+                        </button>
+                    </div>
+                </div>
+
+
                        
                 
 
             ) : (
-                <div className="text-center">
+                <div className="text-center text-white">
                     <p className="text-xl font-medium mb-4">Welcome, {userProfile.name}!</p>
                     <p className="text-xl font-medium mb-4">User Name: {userProfile.username}</p>
                     <p className="text-xl font-medium mb-4">Email: {userProfile.email}</p>
@@ -74,6 +83,12 @@ const App = () => {
                 </div>
             )}
         </div>
+
+
+        
+            
+        
+        
     );
 };
 

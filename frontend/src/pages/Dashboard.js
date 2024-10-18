@@ -60,68 +60,70 @@ const Dashboard = () => {
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
     return (
-        <div className="container mx-auto p-10 h-screen w-full bg-gray-50">
+        <div className="container ml-40">
             {/* Flex container for side-by-side layout */}
             <div className="flex flex-col lg:flex-row gap-20 w-full">
 
                 {/* Reservation Form Section */}
                 <div className="flex-grow bg-white p-8 shadow-lg rounded-lg">
-                    <h2 className="text-xl font-semibold mb-4">Create a Reservation</h2>
+                    <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Make Reservations</h2>
                     <ReservationForm fetchReservations={fetchReservations} />
                 </div>
 
                 {/* Reservations List Section */}
-                <div className="flex-grow bg-white p-8 shadow-lg rounded-lg">
-                    {reservations.length > 0 ? (
-                        <div className="space-y-6">
-                            <h2 className="text-xl font-semibold mb-4">Your Reservations</h2>
-                            <ul className="space-y-4">
-                                {currentReservations.map((reservation) => {
-                                    const currentDate = new Date(); // Get the current date
-                                    const reservationDate = new Date(reservation.date); // Convert reservation date to a Date object
+<div className="flex-grow bg-gradient-to-br from-blue-50 to-blue-100 p-8 shadow-lg rounded-lg">
+    {reservations.length > 0 ? (
+        <div className="space-y-6">
+            <h2 className="text-2xl font-bold text-blue-900 mb-6 text-center">Your Reservations</h2>
+            <ul className="space-y-6">
+                {currentReservations.map((reservation) => {
+                    const currentDate = new Date(); // Get the current date
+                    const reservationDate = new Date(reservation.date); // Convert reservation date to a Date object
 
-                                    return (
-                                        <li key={reservation.booking_id} className="bg-gray-100 p-4 rounded-lg shadow-sm">
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <p className="font-medium">Service Date:</p>
-                                                <p>{reservationDate.toLocaleDateString()}</p>
-                                                <p className="font-medium">Location:</p>
-                                                <p>{reservation.location}</p>
-                                                <p className="font-medium">Vehicle No:</p>
-                                                <p>{reservation.vehicle_no}</p>
-                                                <p className="font-medium">Mileage:</p>
-                                                <p>{reservation.mileage}</p>
-                                                <p className="font-medium">Message:</p>
-                                                <p>{reservation.message}</p>
-                                            </div>
+                    return (
+                        <li key={reservation.booking_id} className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
+                            <div className="grid grid-cols-2 gap-4 text-blue-900">
+                                <p className="font-semibold">Service Date:</p>
+                                <p>{reservationDate.toLocaleDateString()}</p>
+                                <p className="font-semibold">Location:</p>
+                                <p>{reservation.location}</p>
+                                <p className="font-semibold">Vehicle No:</p>
+                                <p>{reservation.vehicle_no}</p>
+                                <p className="font-semibold">Mileage:</p>
+                                <p>{reservation.mileage}</p>
+                                <p className="font-semibold">Message:</p>
+                                <p>{reservation.message}</p>
+                            </div>
 
-                                            {/* Conditionally render the Delete button for future reservations */}
-                                            {reservationDate > currentDate ? (
-                                                <button
-                                                    onClick={() => deleteReservation(reservation.booking_id)}
-                                                    className="mt-4 w-full bg-red-500 text-white font-semibold py-2 px-4 rounded hover:bg-red-600"
-                                                >
-                                                    Delete
-                                                </button>
-                                            ) : (
-                                                <p className="mt-4 text-sm text-gray-500">Past reservations cannot be deleted.</p>
-                                            )}
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+                            {/* Conditionally render the Delete button for future reservations */}
+                            {reservationDate > currentDate ? (
+                                <button
+                                    onClick={() => deleteReservation(reservation.booking_id)}
+                                    className="mt-6 w-full bg-red-600 text-white font-semibold py-3 rounded-lg hover:bg-red-700 transition duration-300"
+                                >
+                                    Delete
+                                </button>
+                            ) : (
+                                <p className="mt-6 text-sm text-gray-500 text-center">Past reservations cannot be deleted.</p>
+                            )}
+                        </li>
+                    );
+                })}
+            </ul>
 
-                            <Pagination
-                                reservationsPerPage={reservationsPerPage}
-                                totalReservations={reservations.length}
-                                paginate={paginate}
-                                currentPage={currentPage}
-                            />
-                        </div>
-                    ) : (
-                        <p className="text-center text-gray-600">No reservations found.</p>
-                    )}
-                </div>
+            {/* Pagination component */}
+            <Pagination
+                reservationsPerPage={reservationsPerPage}
+                totalReservations={reservations.length}
+                paginate={paginate}
+                currentPage={currentPage}
+            />
+        </div>
+    ) : (
+        <p className="text-center text-blue-800 text-lg">No reservations found.</p>
+    )}
+</div>
+
             </div>
         </div>
     );
